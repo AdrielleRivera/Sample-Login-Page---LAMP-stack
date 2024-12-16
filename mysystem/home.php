@@ -67,9 +67,10 @@ if ($conn->connect_error) {
         $row = $result->fetch_assoc();
         $res_Uname = $row['Username'];
         $res_Age = $row['Age'];
-        $res_Email = $row['Email']; 
+        $res_Email = isset($row['Email']) ? $row['Email'] : "Email not available";
 
-        // Store user data in session
+       
+ // Store user data in session
         $_SESSION['username'] = $res_Uname;
         $_SESSION['email'] = $res_Email;
         $_SESSION['age'] = $res_Age;
@@ -83,16 +84,19 @@ if ($conn->connect_error) {
 // Check if user is logged in
 if (isset($_SESSION['username'])) {
     $res_Uname = $_SESSION['username'];
-    $res_Email = $_SESSION['email'];
+    // $res_Email = $_SESSION['email'];
     $res_Age = $_SESSION['age'];
 } 
-            
             ?>
+
+
             <a href='edit.php'>Change Profile</a>
-            <a href="php/logout.php"> <button class="btn">Log Out</button> </a>                                
+            <a href="php/logout.php"> <button class="btn">Log Out</button> </a>  
+
 
         </div>
     </div>
+
     <main>
 
        <div class="main-box top">
